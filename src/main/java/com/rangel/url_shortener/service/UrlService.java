@@ -1,0 +1,53 @@
+package com.rangel.url_shortener.service;
+
+import com.rangel.url_shortener.generator.UrlGenerator;
+import com.rangel.url_shortener.model.Url;
+import com.rangel.url_shortener.validator.UrlValidator;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
+public class UrlService {
+
+    private UrlGenerator generator;
+    private UrlValidator validator;
+
+    public UrlService(UrlGenerator generator, UrlValidator validator) {
+        this.generator = generator;
+        this.validator =validator;
+    }
+
+    private Map<String, String> urlStorage = new HashMap<>();
+    private Map<String, String> originalUrlStorage = new HashMap<>();
+
+    public Url shortenUrl(Url url) {
+        validator.validateOriginalUrl(url);
+
+        String originalUrl = url.getOriginalUrl();
+
+        if(originalUrlStorage.containsKey(originalUrl)) {
+            String shortenedCode = originalUrlStorage.get(originalUrl);
+            url.setShortenedUrl("http://localhost:8080/" + shortenedCode);
+        } else{
+            String shortenedCode = generator.generateShortUrl(originalUrl);
+            url.setShortenedUrl("http://localhost:8080/" + shortenedCode);
+
+            urlStorage.put(shortenedCode, originalUrl);
+            originalUrlStorage.put(originalUrl, shortenedCode);
+        }
+
+        return url;
+    }
+
+    public String getOriginalUrl(String shortenedCode) {
+        String originalUrl = urlStorage.get(shortenedCode);
+
+        if(originalUrl == null) {
+            throw new IllegalArgumentException("URL encurtada não encotrada");
+        }
+        return originalUrl;
+    }
+
+}

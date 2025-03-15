@@ -1,7 +1,9 @@
 package com.rangel.url_shortener.generator;
 
-import java.util.Random;
+import org.springframework.stereotype.Component;
 
+import java.util.Random;
+@Component
 public class UrlGenerator {
 
     private final static String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
