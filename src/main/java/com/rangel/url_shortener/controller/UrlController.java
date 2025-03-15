@@ -10,6 +10,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/urls")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class UrlController {
 
     private UrlService service;
@@ -23,6 +24,7 @@ public class UrlController {
         return service.shortenUrl(url);
     }
 
+    @GetMapping("/{shortenedCode}")
     public ResponseEntity<Void> redirectToOriginalUrl(@PathVariable String shortenedCode) {
         String originalUrl = service.getOriginalUrl(shortenedCode);
 
