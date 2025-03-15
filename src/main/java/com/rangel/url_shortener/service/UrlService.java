@@ -1,8 +1,10 @@
 package com.rangel.url_shortener.service;
 
+import com.rangel.url_shortener.exception.UrlException;
 import com.rangel.url_shortener.generator.UrlGenerator;
 import com.rangel.url_shortener.model.Url;
 import com.rangel.url_shortener.validator.UrlValidator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,6 +12,9 @@ import java.util.Map;
 
 @Service
 public class UrlService {
+
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     private UrlGenerator generator;
     private UrlValidator validator;
@@ -29,10 +34,10 @@ public class UrlService {
 
         if(originalUrlStorage.containsKey(originalUrl)) {
             String shortenedCode = originalUrlStorage.get(originalUrl);
-            url.setShortenedUrl("http://localhost:8080/" + shortenedCode);
+            url.setShortenedUrl(baseUrl + shortenedCode);
         } else{
             String shortenedCode = generator.generateShortUrl(originalUrl);
-            url.setShortenedUrl("http://localhost:8080/" + shortenedCode);
+            url.setShortenedUrl(baseUrl + shortenedCode);
 
             urlStorage.put(shortenedCode, originalUrl);
             originalUrlStorage.put(originalUrl, shortenedCode);
@@ -45,7 +50,7 @@ public class UrlService {
         String originalUrl = urlStorage.get(shortenedCode);
 
         if(originalUrl == null) {
-            throw new IllegalArgumentException("URL encurtada não encotrada");
+            throw new UrlException("URL encurtada não encotrada");
         }
         return originalUrl;
     }
