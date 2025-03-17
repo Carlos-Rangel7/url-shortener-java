@@ -10,7 +10,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/urls")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "https://url-shortener-java-1.onrender.com")
 public class UrlController {
 
     private UrlService service;
