@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         if (urlInput.value) {
-            fetch("http://localhost:8080/urls/shorten", {
+            fetch("https://url-shortener-java-2zcv.onrender.com/urls/shorten", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json",
