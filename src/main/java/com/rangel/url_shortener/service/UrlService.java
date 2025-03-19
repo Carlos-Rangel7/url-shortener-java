@@ -19,9 +19,10 @@ public class UrlService {
     private UrlGenerator generator;
     private UrlValidator validator;
 
-    public UrlService(UrlGenerator generator, UrlValidator validator) {
+    public UrlService(UrlGenerator generator, UrlValidator validator, @Value("${app.base-url}") String baseUrl) {
         this.generator = generator;
-        this.validator =validator;
+        this.validator = validator;
+        this.baseUrl = baseUrl;
     }
 
     private Map<String, String> urlStorage = new HashMap<>();

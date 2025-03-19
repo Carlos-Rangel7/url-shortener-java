@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         if (urlInput.value) {
-            fetch("https://url-shortener-java-2zcv.onrender.com/urls/shorten", {
+            fetch("https://encurtador-qbln.onrender.com/urls/shorten", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json",
@@ -24,13 +24,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                shortenedUrlInput.value = data.shortenedUrl;
+                const shortenedUrl = "https://encurtador-qbln.onrender.com/urls/shorten/${data.shortenedCode}";
+                shortenedUrlInput.value = shortenedUrl;
                 copyBtn.style.display = 'inline';
 
-                if (data.shortenedUrl) {
+                if (data.shortenedCode) {
                     shortenedUrlInput.style.cursor = 'pointer';
                     shortenedUrlInput.onclick = function() {
-                        window.open(data.shortenedUrl, '_blank');
+                        window.open(shortenedUrl, '_blank');
                     };
                 } else {
                     shortenedUrlInput.style.cursor = 'not-allowed';

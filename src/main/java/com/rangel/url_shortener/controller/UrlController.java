@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/urls")
 @CrossOrigin(origins = "https://url-shortener-java-1.onrender.com")
+@RequestMapping("/urls")
 public class UrlController {
 
     private UrlService service;
