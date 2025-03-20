@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         if (urlInput.value) {
-            fetch("https://encurtador-qbln.onrender.com/urls/shorten", {
+            fetch("https://encurtador-qbln.onrender.com/shorten", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json",
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                const shortenedUrl = "https://encurtador-qbln.onrender.com/urls/shorten/${data.shortenedCode}";
+                const shortenedUrl = "https://encurtador-qbln.onrender.com/shorten/${data.shortenedCode}";
                 shortenedUrlInput.value = shortenedUrl;
                 copyBtn.style.display = 'inline';
 
