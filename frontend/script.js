@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         if (urlInput.value) {
-            fetch("https://encurtador-qbln.onrender.com/shorten", {
+            fetch("https://urlshort-kl4k.onrender.com/shorten", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json",
@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                const shortenedUrl = "https://encurtador-qbln.onrender.com/shorten/${data.shortenedCode}";
+                const shortenedUrl = data.shortenedUrl;
+                
                 shortenedUrlInput.value = shortenedUrl;
                 copyBtn.style.display = 'inline';
 
-                if (data.shortenedCode) {
+                if (shortenedUrl) {
                     shortenedUrlInput.style.cursor = 'pointer';
                     shortenedUrlInput.onclick = function() {
                         window.open(shortenedUrl, '_blank');
