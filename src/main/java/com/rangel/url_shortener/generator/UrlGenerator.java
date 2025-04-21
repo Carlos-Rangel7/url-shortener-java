@@ -7,7 +7,7 @@ import java.util.Random;
 public class UrlGenerator {
 
     private final static String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private final static int CODE_LENGTH = 6;
+    private final static int CODE_LENGTH = 4;
     private final Random rand = new Random();
 
     public String generateShortUrl(String originalUrl) {
