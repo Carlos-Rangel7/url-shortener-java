@@ -1,5 +1,7 @@
 # Encurtador de URL
 
+Você pode acessar o projeto completo na web em: [https://www.rangeldev.com/](https://www.rangeldev.com)
+
 Este projeto implementa um encurtador de URL simples, permitindo que os usuários insiram uma URL longa e obtenham uma versão encurtada. O projeto é dividido em duas partes: o back-end, que é feito com **Java** e **Spring**, e o front-end, que utiliza **HTML**, **CSS** e **JavaScript** para interações e mensagens.
 
 ## Funcionalidades
